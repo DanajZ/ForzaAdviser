@@ -1,0 +1,40 @@
+﻿<Window x:Class="ForzaAdviser.Modals.StartupWizard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ForzaAdviser.Modals"
+        xmlns:settings="clr-namespace:ForzaAdviser.Dependencies"
+        mc:Ignorable="d"
+        Title="Startup Wizard" Height="800" Width="400"
+        WindowStartupLocation="CenterScreen" SizeToContent="Height"
+        >
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="1" Name="TBWelcome" Text="Welcome To Forza Adviser" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="3"></TextBlock>
+
+        <TextBlock Grid.Column="1" Margin="0,10,10,10" Grid.Row="1" Text="IP Address:" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBox Grid.Column="2" Grid.Row="1" Margin="10, 10, 10, 10" HorizontalAlignment="Stretch" VerticalAlignment="Center" Name="TBIPAddress" IsReadOnly="True" Grid.ColumnSpan="2" 
+                 Text="{Binding Mode=TwoWay, Source={x:Static settings:Settings.Default}, Path=IPAddress}" TextChanged="TBIPAddress_TextChanged"></TextBox>
+
+        <TextBlock Grid.Column="1" Margin="0, 10, 10, 10" Grid.Row="2" Text="Port:" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        <TextBox Grid.Column="2" Grid.Row="2" Margin="10, 10, 10, 10" HorizontalAlignment="Stretch" 
+                 VerticalAlignment="Center" Name="TBPort" Grid.ColumnSpan="2" Text="{Binding Mode=TwoWay, Source={x:Static settings:Settings.Default}, Path=Port}" TextChanged="TBPort_TextChanged"></TextBox>
+
+        <CheckBox Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" Grid.ColumnSpan="5"  Name="CBShowStartupWizardOnLaunch" Content="Show on startup"
+                  IsChecked="{Binding Mode=TwoWay, Source={x:Static settings:Settings.Default}, Path=ShowStartupWizard}"></CheckBox>
+        <Button Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="5" MaxWidth="80" MaxHeight="40" Margin="0, 20, 0, 0" Click="Finish_Click">Finish</Button>
+    </Grid>
+</Window>
