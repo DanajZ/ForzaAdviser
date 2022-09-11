@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ForzaAdviser"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Forza Adviser" Height="450" Width="800" WindowStartupLocation="CenterScreen" >
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition>
+            </ColumnDefinition>
+            <ColumnDefinition>
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition  />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Menu Grid.ColumnSpan="2" Grid.Row="0" Grid.Column="0">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Close" Name="MiClose" Click="MiClose_Click" />
+            </MenuItem>
+            <MenuItem Header="_Settings">
+                <MenuItem Header="Startup Wizard" Name="MiStartupWizard" Click="MiStartupWizard_Click" />
+            </MenuItem>
+        </Menu>
+        
     </Grid>
 </Window>

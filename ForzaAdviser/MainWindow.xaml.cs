@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ForzaAdviser.Dependencies;
+using ForzaAdviser.Modals;
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ForzaAdviser
 {
@@ -20,9 +10,46 @@ namespace ForzaAdviser
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private StartupWizard StartupWizard { get; set; }
+
+        public MainWindow(StartupWizard startupWizard)
         {
+            StartupWizard = startupWizard;
+
             InitializeComponent();
+
+            StartupWizard.IsVisibleChanged += StartupWizard_IsVisibleChanged;
+
+            if (Settings.Default.ShowStartupWizard)
+            {
+                StartupWizard.Show();
+            }
+        }
+
+        private void StartupWizard_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            var suw = (StartupWizard)sender;
+
+            if (!suw.IsVisible)
+            {
+                this.Focus();
+            }
+        }
+
+        private void MiClose_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
+        }
+
+        private void MiStartupWizard_Click(object sender, RoutedEventArgs e)
+        {
+            StartupWizard.Show();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            App.Current.Shutdown();
         }
     }
 }
